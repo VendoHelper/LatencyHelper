@@ -7,7 +7,7 @@ Discord latency helper is used to reduce connection time between your device and
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install any needed packages.
 
 ```bash
-pip install foobar
+python main.py
 ```
 
 ## Usage
