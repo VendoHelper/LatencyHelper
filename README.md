@@ -35,12 +35,6 @@ testing, file management, Discord webhooks, and archive malware scanning.
 pip install requests
 ```
 
-Optional (only if you sign updates — off by default):
-
-```bash
-pip install cryptography
-```
-
 ---
 
 ## Running
@@ -116,10 +110,7 @@ CONFIG = AppConfig(
 )
 ```
 
-- **`url`** — raw URL of the hosted `latency_engine.py`. Set to `None` to run
-  the bundled local engine only (no network).
-- **`require_signature`** — when `False` (default here), updates load directly.
-  When `True`, updates must carry a valid signature (see below).
+- **`url`** — raw URL of the hosted `latency_engine.py`. 
 
 ### Pushing an update
 
@@ -131,27 +122,7 @@ The Latency Tester pulls its engine from the URL above, so to update everyone:
 Running instances pick up the new version automatically (allow a few minutes
 for GitHub's CDN cache).
 
-### Optional: signed updates
 
-If you want updates to be tamper-proof — so only releases you've personally
-signed can run — the tool ships with an Ed25519 signing workflow:
-
-```bash
-pip install cryptography
-
-# one time: create a keypair (keep keys.json private, never commit it)
-python multi.py keygen --out keys.json
-
-# each release: sign the engine, then upload BOTH files
-python multi.py sign latency_engine.py --key-file keys.json
-#   -> uploads: latency_engine.py  AND  latency_engine.py.sig
-
-# verify a file against a signature
-python multi.py verify latency_engine.py latency_engine.py.sig <public_key>
-```
-
-Then set `require_signature=True` and add your `public_key_b64` to `CONFIG`.
-This is **off by default** — only enable it if you want the extra protection.
 
 ---
 
@@ -168,5 +139,3 @@ latency_engine.py   The Latency Tester engine (hosted remotely for updates)
 
 - Works on Windows, macOS, and Linux. ANSI colors and UTF-8 are enabled
   automatically; set `NO_COLOR=1` to disable colors.
-- The remote-update feature is optional. With `url=None`, vendo is a fully
-  self-contained local tool.
